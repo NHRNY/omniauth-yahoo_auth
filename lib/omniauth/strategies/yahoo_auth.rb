@@ -5,7 +5,7 @@ module OmniAuth
   module Strategies
     # Main class for Yahoo Auth Startegy
     class YahooAuth < OmniAuth::Strategies::OAuth2
-      SOCIAL_API_URL = "https://social.yahooapis.com/v1/user/"
+      SOCIAL_API_URL = "'https://api.login.yahoo.com/openid/v1/userinfo'"
 
       option :name, "yahoo_auth"
 
@@ -20,7 +20,7 @@ module OmniAuth
       info do
         prune!(
           nickname: raw_info['nickname'],
-          email: get_primary_email,
+          email: raw_info['email'],
           first_name: raw_info['givenName'],
           last_name: raw_info['familyName'],
           image: get_user_image
